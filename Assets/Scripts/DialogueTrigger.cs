@@ -15,7 +15,7 @@ public class DialogueTrigger : MonoBehaviour
 
     [TextArea(5,10)]
     public string interactableName;
-    string sentence;
+    public string sentence;
     string name;
     Sprite avatar;
     Sprite textbox;
@@ -49,6 +49,7 @@ public class DialogueTrigger : MonoBehaviour
                     triggered = true;
                     TriggerDialogue();
                     Interactable.text = interactableName;
+                    Interactable.enabled = true;
                 }
             }
             else{
