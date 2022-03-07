@@ -162,7 +162,7 @@ public class DialogueTrigger : MonoBehaviour
     IEnumerator TypeText(string sentence){
         for (int i = 0; i <= sentence.Length; i++){
             dialogueText.text = sentence.Substring(0, i);
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.025f);
         }
     }
 

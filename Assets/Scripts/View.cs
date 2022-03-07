@@ -30,12 +30,16 @@ public class View : MonoBehaviour
         characterController = GetComponent<CharacterController>();
 
         controller = new Controller(model);
+
+        model.horizontalRotation = transform.localRotation.y;
     }
 
 
     // Game controller changes should always be applied in FixedUpdate because they are physics operations.
     void FixedUpdate()
     {
+        Debug.Log(model.horizontalRotation); 
+
         //Allows move and jump if on ground/
         if (controller.IsGrounded(characterController.isGrounded))
         {
@@ -50,7 +54,7 @@ public class View : MonoBehaviour
         characterController.Move(model.MoveDirection * Time.deltaTime);
 
         controller.CalcRotation();
-        transform.localRotation = Quaternion.Euler(0, model.horizontalRotation + 180f, 0);
+        transform.rotation = Quaternion.Euler(0, model.horizontalRotation, 0);
         playerHead.localRotation = Quaternion.Euler(model.verticalRotation, 0, 0);
     }
 
