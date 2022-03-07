@@ -12,8 +12,10 @@ public class DialogueTrigger : MonoBehaviour
     private Queue<string> names;
     private Queue<Sprite> avatars;
     private Queue<Sprite> textboxes;
-    string sentence;
 
+    [TextArea(5,10)]
+    public string interactableName;
+    string sentence;
     string name;
     Sprite avatar;
     Sprite textbox;
@@ -46,14 +48,27 @@ public class DialogueTrigger : MonoBehaviour
                 if (!triggered){
                     triggered = true;
                     TriggerDialogue();
+                    Interactable.text = interactableName;
                 }
             }
             else{
+                if (triggered)
+                    EndDialogue();
                 triggered = false;
+            }
+
+            if (hit.transform.gameObject.tag == "DialogueTrigger" && !dialogueText.enabled){
+                Interactable.enabled = true;
+            }
+            else{
+                Interactable.enabled = false;
             }
         }
         else{
+            if (triggered)
+                EndDialogue();
             triggered = false;
+            Interactable.enabled = false;
         }
 
         // if (!talked && Mathf.Abs(transform.position.x - GameObject.Find("Madeline").transform.position.x) <= 2.5f)
@@ -69,12 +84,12 @@ public class DialogueTrigger : MonoBehaviour
         if (triggered)
         {
             
-            if (!dialogueText.enabled){
-                Interactable.enabled = true;
-            }
-            else{
-                Interactable.enabled = false;
-            }
+            // if (!dialogueText.enabled){
+            //     Interactable.enabled = true;
+            // }
+            // else{
+            //     Interactable.enabled = false;
+            // }
 
             if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Mouse0))
             {
@@ -111,8 +126,8 @@ public class DialogueTrigger : MonoBehaviour
 
         }
         else{
-            EndDialogue();
-            Interactable.enabled = false;
+            //EndDialogue();
+            //Interactable.enabled = false;
         }
 
     }
