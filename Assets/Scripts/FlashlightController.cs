@@ -8,6 +8,7 @@ public class FlashlightController : MonoBehaviour
 
     void Update()
     {
+        //when key pressed, set the flashlight bool to its opposite.
         if (Input.GetKeyDown(KeyCode.F)){
             Flashlight.SetActive(!Flashlight.activeInHierarchy);
         }

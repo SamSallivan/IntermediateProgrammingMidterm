@@ -31,7 +31,7 @@ public class Model
     public float MouseX { get; set; }
     public float MouseY { get; set; }
     public bool Shift { get; set; }
-    public float horizontalRotation { get; set; }
+    public float horizontalRotation;// { get; set; }
     public float verticalRotation { get; set; }
 
 }

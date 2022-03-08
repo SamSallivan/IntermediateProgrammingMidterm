@@ -7,18 +7,16 @@ public class AnimationShiftTrigger : MonoBehaviour
     
     public GameObject character;
     public Animator animator;
-    public float blend = 0;
-    public bool changed = false;
-
-    // Start is called before the first frame update
+    public float blend = 0; //A float between 0 and 1 for animations transition.
+    public bool changed = false; //A boolean that switches 2 animations on and off.
     void Start()
     {
         animator = character.GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
+        //gradually shifts the value blend between 0 and 1, depending on whether is triggered.
         if (blend < 1 && changed){
             blend += 0.01f;
         }
@@ -26,11 +24,12 @@ public class AnimationShiftTrigger : MonoBehaviour
             blend -= 0.01f;
         }
 
+        //sends the values to the animator, to be used as conditions for animation transition.
         animator.SetFloat("Blend", blend);
         animator.SetBool("Triggered", changed);
     }
 
-    
+    //set the bool equal to whether is triggered.
      void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player"){
