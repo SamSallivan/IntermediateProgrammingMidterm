@@ -24,6 +24,7 @@ public class AnimationShiftTrigger : MonoBehaviour
             blend -= 0.01f;
         }
 
+        //ADVANCED CODING TECHNIQUE!! MODIFYING ANIMATION COTROLLER PARAMETERS.
         //sends the values to the animator, to be used as conditions for animation transition.
         animator.SetFloat("Blend", blend);
         animator.SetBool("Triggered", changed);
